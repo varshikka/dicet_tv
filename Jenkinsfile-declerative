@@ -1,0 +1,15 @@
+node {
+    def mvnHome
+    stage('SCM') { 
+        git 'https://github.com/vamsibyramala/dicet_tv.git'
+        mvnHome = tool 'maven'
+    }
+    stage('Build') {
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            sh 'mvn clean package'
+        }
+    }
+    stage('deploy') {
+        deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://13.201.33.52:8080/')], contextPath: 'vamsi', war: '**/*.war'
+    }
+}
