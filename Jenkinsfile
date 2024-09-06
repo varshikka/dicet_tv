@@ -1,19 +1,21 @@
 pipeline {
-    agent any
+    agent { label 'dev' }
+    tools { maven 'maven' }
+
     stages {
-        stage (git) {
+        stage('SCM') {
             steps {
                 git 'https://github.com/vamsibyramala/dicet_tv.git'
             }
         }
-        stage (build) {
+        stage('build') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage (deploy) {
+        stage('deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.111.34.221:8081/')], contextPath: 'tv', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://13.201.33.52:8080/')], contextPath: 'vamsi', war: '**/*.war'
             }
         }
     }
