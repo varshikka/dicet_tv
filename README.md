@@ -1,2 +1,2 @@
 # maven
-github hook new changes
+poll scm
