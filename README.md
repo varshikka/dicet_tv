@@ -1,2 +1,2 @@
 # maven
-poll scm
+poll scm - new
