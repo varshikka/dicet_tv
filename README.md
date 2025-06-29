@@ -1,2 +1,2 @@
 # maven
-github hook new
+github hook new changes
