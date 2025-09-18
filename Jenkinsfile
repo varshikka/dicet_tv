@@ -2,12 +2,12 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
-        jdk 'JDK17'
+        jdk 'JDK21'
     }
     stages {
         stage('Checkout') {
             steps {
-                git url:git url: 'https://github.com/varshikka/dicet_tv.git', branch: 'main'
+                git url: 'https://github.com/varshikka/dicet_tv.git', branch: 'main'
             }
         }
         stage('Build with Maven') {
@@ -31,4 +31,5 @@ pipeline {
         }
     }
 }
+
 
