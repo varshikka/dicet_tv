@@ -11,10 +11,13 @@ pipeline {
             }
         }
         stage('Build with Maven') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
+    steps {
+        sh '''
+        export MAVEN_OPTS="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
+        mvn clean install
+        '''
+    }
+}
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
