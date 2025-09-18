@@ -1,16 +1,34 @@
 pipeline {
-    agent {label 'dev'}
-    tools {maven 'maven'}
+    agent any
+    tools {
+        maven 'Maven'
+        jdk 'JDK17'
+    }
     stages {
-        stage('Git') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/vamsibyramala/dicet_tv.git'
+                git url: 'https://github.com/<your-username>/<repo-name>.git', branch: 'main'
             }
         }
-        stage('build') {
+        stage('Build with Maven') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean install'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=myproject'
+                }
+            }
+        }
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     }
 }
+
