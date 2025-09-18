@@ -7,8 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/varshikka/dicet_tv.git
-', branch: 'main'
+                git url:git url: 'https://github.com/varshikka/dicet_tv.git', branch: 'main'
             }
         }
         stage('Build with Maven') {
