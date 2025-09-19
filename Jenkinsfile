@@ -21,7 +21,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=squ_5e06bd1491415feb2c03b5132c2676d3386d7663'
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=project-1'
                 }
             }
         }
