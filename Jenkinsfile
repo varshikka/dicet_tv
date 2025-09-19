@@ -20,8 +20,8 @@ pipeline {
 }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=myproject'
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=squ_5e06bd1491415feb2c03b5132c2676d3386d7663'
                 }
             }
         }
