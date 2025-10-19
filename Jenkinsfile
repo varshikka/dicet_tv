@@ -50,7 +50,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${varshikka/dicet_tv}:latest .'
+                sh 'docker build -t varshikka/dicet_tv:latest .'
             }
         }
 
