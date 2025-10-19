@@ -59,7 +59,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS}", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh '''
                         echo $PASS | docker login -u $USER --password-stdin
-                        docker push ${varshikka/dicet_tv}:latest
+                        docker push varshikka/dicet_tv:latest
                     '''
                 }
             }
