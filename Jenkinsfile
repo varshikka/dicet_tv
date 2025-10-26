@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy to Nexus (Snapshots)') {
     steps {
         // Inject Nexus credentials from Jenkins
-        withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+        withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
             
             // Create a temporary settings.xml dynamically
             writeFile file: 'temp-settings.xml', text: """
